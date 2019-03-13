@@ -1,0 +1,23 @@
+<!--theme.wxml-->
+<!-- <view class="container">
+    <navigator class="card" url="../list/list?id={{item.id}}&title={{item.name}}"  wx:for="{{list}}">
+        <image src="{{item.thumbnail}}" class="card-image"></image>
+        <view class="card-content">
+            <view>
+                <text class="card-title">{{item.name}}</text>
+            </view>
+            <view>
+                <text class="card-desc">{{item.description}}</text>
+            </view>
+        </view>
+    </navigator>
+</view> -->
+
+<view>
+  <view class='logo'>
+    <image class='logo-image' src='/images/logo_zhi.gif' mode='widthFix'></image>
+  </view>
+  <view class='tips'>
+    <view>1. 本项目功能尚在完善中，如果您在使用中发现有任何的问题，可以与我联系 392439022@qq.com，我将会非常虚心的接受所有用户提出的宝贵意见</view>
+  </view>
+</view>
