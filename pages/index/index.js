@@ -5,7 +5,7 @@ var utils = require('../../utils/util.js')
 Page({
   data: {
     list: [],
-    duration: 2000,
+    duration: 500,
     indicatorDots: true,
     autoplay: true,
     interval: 3000,
@@ -13,11 +13,36 @@ Page({
     plain: false
   },
 
-  //事件处理函数
-  bindViewTap(e) {
-    wx.navigateTo({
-      url: '../detail/detail?id=' + e.target.dataset.id
-    })
+  // 加载日报内容，加载的是最新的内容
+  onLoad() {
+    this.fetchArticles()
+    //调用应用实例的方法获取全局数据
+    // app.getUserInfo(function(userInfo){
+    //   //更新数据
+    //   that.setData({
+    //     userInfo:userInfo
+    //   })
+    // })
+
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    // 上拉刷新 
+    if (!this.loading) {
+      // 加载更多内容
+      this.fetchArticles()
+      // 处理完成后，终止下拉刷新
+      wx.stopPullDownRefresh()
+      // console.log('加载内容完成');
+    }
+  },
+
+  // 上拉加载
+  onReachBottom() {
+    // 下拉触底，先判断是否有请求正在进行中 // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求 
+    this.loadMore()
+    // console.log('上拉加载更多内容完成')
   },
 
   // 加载更多，加载之前的日报
@@ -51,8 +76,8 @@ Page({
     return now
   },
 
-  // 加载日报内容，加载的是最新的内容
-  onLoad() {
+  // 加载文章
+  fetchArticles() {
     let that = this
     wx.request({
       url: 'https://news-at.zhihu.com/api/4/news/latest',
@@ -69,13 +94,6 @@ Page({
       }
     })
     this.index = 1
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function(userInfo){
-    //   //更新数据
-    //   that.setData({
-    //     userInfo:userInfo
-    //   })
-    // })
-
   }
+
 })

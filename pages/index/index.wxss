@@ -3,29 +3,42 @@
   width: 100%;
 }
 
-/*  */
 .banners {
   width: 100%;
-  height: 200px;
+  height: 219px;
 }
-.banner{
+
+.banner {
   position: relative;
 }
-.banner-image{
+
+.banner-img {
+  height: 219px;
   width: 100%;
 }
-.banner-title{
-  color: #FFF;
+
+.banner-img-mask {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to top, rgba(0,0,0,0) 25%,rgba(0,0,0,0.6) 100%); */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 25%,rgba(0,0,0,0.6) 100%);
+}
+
+.banner-title {
   position: absolute;
   bottom: 36px;
   left: 8px;
+  /* 字体在最上层 */
+  z-index: 1; 
+  color: #fff;
   font-size: 20px;
-  padding: 0 12px 0 12px !important;
-
+  padding: 0 12px !important;
 }
 
 /* 分割标题部分 */
-.sub-title{
+.sub-title {
   color: #7e7b76;
   height: 36px;
   line-height: 36px;
@@ -36,14 +49,11 @@
   padding-right: 16px;
 }
 
-
 /* 日报内容容器栏 */
 .news-item-container {
   background-color: #f2f2f2;
   width: 100%;
-  /* width 和 padding 同时设置的话，会造成宽度溢出 */
-  /* padding-left: 8px; */
-  /* padding-right: 8px; */
+  /* width 和 padding 同时设置的话，会造成宽度溢出 *//* padding-left: 8px; *//* padding-right: 8px; */
 }
 
 /* 日报内容 */
@@ -64,24 +74,23 @@
   border-radius: 5px;
 }
 
-/*  */
-.news-item-right{
+.news-item-right {
   width: 80px;
   height: 80px;
 }
 
-.news-image{
+.news-image {
   width: 80px;
   height: 80px;
 }
 
 /* 标题栏 */
-.news-item-title{
+.news-item-title {
   font-size: 16px;
 }
 
 /* 加载按钮，点击加载更多日报 */
-.load-btn{
+.load-btn {
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 16px;

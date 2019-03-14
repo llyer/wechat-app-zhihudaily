@@ -6,9 +6,10 @@
     "pages/list/list"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "navigationStyle": "default",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#00a2ea",
-    "navigationBarTitleText": "知否Daily",
+    "navigationBarTitleText": "知否精选",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

@@ -8,6 +8,7 @@ Page({
     author: '',
     // 作者简介
     bio: '',
+    // 文章内容
     art: {},
     // 测试富文本内容
     html: '<div class="div_class" style="line-height: 60px; color: red;">Hello&nbsp;World!</div>'
@@ -15,9 +16,9 @@ Page({
 
   // 页面事件 ready
   onReady() {
-    wx.setNavigationBarTitle({
-      title: '详情页面'
-    })
+    // wx.setNavigationBarTitle({
+    //   title: '详情页面'
+    // })
   },
 
   // 页面事件加载完成
@@ -33,32 +34,46 @@ Page({
         // 如果是日报之类的内容，则可能会有多了 title body 等内容，所以在切分之前，要先判断文章的结构把文章结构截取好
         
         if (res.data.body) {
-          var richText = res.data.body;
-          // 替换转义字符
-          richText.replace(/\"/g, '"')
-          // g 表示替换所有字符串
-          richText.replace(/<img/g, "<image mode='aspectFill'")
-          // 切分多余字符
-          richText = richText.substring(0, richText.lastIndexOf("<script"));
           var body = res.data.body;
-          console.log(body);
+
           // 截取 title 现在是截取多个
           var title = body.match(/<h2.*?<\/h2>/g);
 
           // 截取 author
-          var meta = body.match(/<div class=\"meta\">(.*?)<\/div>/g);
-          var avatar = body.match(/<img class=\"avatar\">(.*?).jpg\">/g);
+          var avatar = body.match(/<img class=\"avatar\"(.*?).jpg\">/g);
           var author = body.match(/<span class=\"author\">(.*?)<\/span>/g);
-          author = author[0].substring(21, author[0].length - 7);
           var bio = body.match(/<span class=\"bio\">(.*?)<\/span>/g);
-          bio = bio[0].substring(18, bio[0].length - 7);
-          console.log(title);
-          console.log(meta);
-          console.log(avatar);
-          console.log(author);
-          console.log(bio);
+
+          if (title != null && title.length > 0) {
+            title = title[0].substring(27, title[0].length - 5);
+          } else {
+            title = '';
+          }
+
+          if (avatar != null && avatar.length > 0) {
+            avatar = avatar[0].substring(25, avatar[0].length - 2);
+          } else {
+            avatar = '';
+          }
+
+          if (author != null && author.length > 0)  {
+            author = author[0].substring(21, author[0].length - 7);
+          } else {
+            author = '';
+          }
+
+          if (bio != null && bio.length > 0) {
+            bio = bio[0].substring(18, bio[0].length - 7);
+          } else {
+            bio = '';
+          }
+          
+          // console.log(title);
+          // console.log(avatar);
+          // console.log(author);
+          // console.log(bio);
           // 正文，段落列表，需要添加兼容性，p标签是段落正文，figure 标签有可能内嵌图片信息 
-          body = body.match(/<p>.*?<\/p>/g);
+          body = body.match(/(<p>|<figure).*?(<\/p>|<\/figure>)/g);
           var ss = [];
           if (body) {
             // 思路,把原来的段落切成文章的数组,然后再把文章数组渲染出去
@@ -106,10 +121,10 @@ Page({
 
         that.setData({
           art: res.data,
-          title: title[0],
+          title: title,
+          avatar: avatar,
           author: author,
           bio: bio,
-          richText: richText
         })
       }
     })

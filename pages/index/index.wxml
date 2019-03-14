@@ -2,15 +2,15 @@
 <view class="container">
 
   <!-- swiper 导航切换部分 -->
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" class="banners" interval="{{interval}}" duration="{{duration}}">
-    <!-- for 循环从 api 获取到的今日的 api 内容，一个 item 就是一个滑块  -->
-    <block wx:for="{{banner}}">
-      <swiper-item class="banner">
-        <!-- 导航栏的图片展示部分，横向充满，但是纵向可能会丢失元素 -->
-        <image src="{{item.image}}" data-id="{{item.id}}" bindtap="bindViewTap" class="banner-image" mode='aspectFill'/>
+  <swiper indicator-dots="{{indicatorDots}}" indicator-color="#aaa" indicator-active-color="#fff" autoplay="{{autoplay}}" class="banners" interval="{{interval}}" duration="{{duration}}">
+    <swiper-item class="banner" wx:for="{{banner}}">
+      <!-- 导航栏的图片展示部分，横向充满，但是纵向可能会丢失元素 -->
+      <navigator url="../detail/detail?id={{item.id}}">
         <text class="banner-title">{{item.title}}</text>
-      </swiper-item>
-    </block>
+        <image class="banner-img" src="{{item.image}}" mode='aspectFill' />
+        <view class='banner-img-mask'></view>
+      </navigator>
+    </swiper-item>
   </swiper>
 
   <!-- 知乎日报的 daily 内容部分 -->
@@ -29,7 +29,7 @@
       </navigator>
     </block>
     <!-- 加载更多按钮 -->
-    <button type="primary" class="load-btn" loading="{{loading}}" plain="{{plain}}" bindtap="loadMore"> 更多 </button>
+    <!-- <button type="primary" class="load-btn" loading="{{loading}}" plain="{{plain}}" bindtap="loadMore"> 更多 </button> -->
   </view>
 
 </view>

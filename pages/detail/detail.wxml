@@ -1,12 +1,14 @@
 <!--detail.wxml-->
 <view class="container">
 
-  <!-- 渲染文章封面 -->
+  <!-- 渲染文章封面，图片，标题，图片来源 -->
   <view class="art-header">
     <image src="{{art.image}}" class="art-img" mode='aspectFill' />
+    <view class='img-mask'></view>
     <view class="art-title">{{art.title}}</view>
-    <view class="art-source">{{art.image_source}}</view>
+    <view class="art-source">{{'图片：' + art.image_source}}</view>
   </view>
+
   <!-- <rich-text nodes="{{html}}" bindtap="tap"></rich-text> -->
   <!-- <rich-text nodes="{{art.body}}" bindtap="tap"></rich-text> -->
   <!-- <view class="art-content">
@@ -18,7 +20,10 @@
     <!-- 渲染标题，作者信息 -->
     <view class='title-container'>
       <view class='art-content'>
-        <rich-text style='text-align:left;' nodes="{{title}}" bindtap="tap"></rich-text>
+        <view>
+          <text class='title'>{{title}}</text>
+        </view>
+        <image class='avatar' src='{{avatar}}'></image>
         <text class='author'>{{author}}</text>
         <text class='bio'>{{bio}}</text>
       </view>
