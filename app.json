@@ -1,13 +1,15 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/theme/theme",
     "pages/detail/detail",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/comment/comment"
   ],
-  "window":{
+  "window": {
+    "backgroundColor": "#fff",
     "navigationStyle": "default",
-    "backgroundTextStyle":"dark",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#00a2ea",
     "navigationBarTitleText": "知否精选",
     "navigationBarTextStyle": "white"
@@ -17,17 +19,20 @@
     "selectedColor": "#3cc51f",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "iconPath": "images/icon_API.png",
-      "selectedIconPath": "images/icon_API_HL.png",
-      "text": "主页"
-    }, {
-      "pagePath": "pages/theme/theme",
-      "iconPath": "images/icon_component.png",
-      "selectedIconPath": "images/icon_component_HL.png",
-      "text": "关于"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon_API.png",
+        "selectedIconPath": "images/icon_API_HL.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/theme/theme",
+        "iconPath": "images/icon_component.png",
+        "selectedIconPath": "images/icon_component_HL.png",
+        "text": "关于"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 120000,

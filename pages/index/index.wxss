@@ -86,7 +86,7 @@
 
 /* 标题栏 */
 .news-item-title {
-  font-size: 16px;
+  font-size: 17px;
 }
 
 /* 加载按钮，点击加载更多日报 */

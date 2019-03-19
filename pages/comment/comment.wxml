@@ -1,0 +1,32 @@
+<view class="container">
+  <!-- 内容部分 -->
+  <view class='article-body'>
+    <!-- 渲染文章封面，图片，标题，图片来源 -->
+    <view class="title">{{extra.long_comments + ' 条长评'}}</view>
+    <view wx:if="{{extra.long_comments > 0}}" class='question-line-dashed'></view>
+    <!-- 长评论 -->
+    <view class='article-container'>
+      <view class='art-content' wx:for="{{long_comments}}" wx:for-index="idx" wx:for-item="long_comment">
+        <!-- 第二个问题之后，加上分割线 -->
+        <view wx:if="{{idx > 0}}" class='answer-line-dashed'></view>
+        <image class='avatar' src='{{long_comment.avatar}}'></image>
+        <text class='author'>{{long_comment.author}}</text>
+        <view class='comment'>{{long_comment.content}}</view>
+      </view>
+    </view>
+
+    <!-- 短评论 -->
+    <view class='question-line-dashed'></view>
+    <view class="title">{{extra.short_comments + ' 条短评'}}</view>
+    <view class='question-line-dashed'></view>
+    <view class='article-container' wx:for="{{short_comments}}" wx:for-index="idx" wx:for-item="short_comment">
+      <view class='art-content'>
+        <!-- 第二个问题之后，加上分割线 -->
+        <view wx:if="{{idx > 0}}" class='answer-line-dashed'></view>
+        <image class='avatar' src='{{short_comment.avatar}}'></image>
+        <text class='author'>{{short_comment.author}}</text>
+        <view class='comment'>{{short_comment.content}}</view>
+      </view>
+    </view>
+  </view>
+</view>

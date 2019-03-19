@@ -4,14 +4,7 @@
   font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
 }
 
-.header {
-  position: relative;
-  width: 100%;
-  height: 219px;
-  color: #fff;
-}
-
-.body {
+.article-body {
   width: 100%;
   padding-bottom: 100px;
 }
@@ -22,44 +15,9 @@
   padding-bottom: 20px;
 }
 
-.p {
-  padding: 5px 0px;
-  width: 100%;
-  text-align: left;
-}
-
-.poster {
-  width: 100%;
-  height: 219px;
-}
-
-.art-title {
-  position: absolute;
-  bottom: 36px;
-  left: 8px;
-  font-size: 20px;
-  padding: 0 12px !important;
-}
-
-.art-source {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  font-size: 10px;
-  color: rgba(255,255,255,.6);
-  text-shadow: 0px 1px 2px rgba(0,0,0,.3);
-}
-
-.meta {
-  margin-bottom: 12px;
-}
-
-.img-mask {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 25%,rgba(0,0,0,0.6) 100%);
+.comment {
+  margin-left: 34px;
+  font-size: 16px;
 }
 
 /* 分割线 */
@@ -85,43 +43,34 @@
   font-size: 17px;
   color: #616466;
   background-color: #fff;
-  line-height: 1.7;
+  line-height: 1.6em;
 }
 
 /* 如果是小程序，底部差不多要有 20px */
-.bottom {
+.button-container {
   position: fixed;
-  height: 48px; /* 吸底按钮的高度 */
+  bottom: 0px; /* 底部距离 */ 
+  padding: 0px 0px 10px 0px;
+  height: 60px;
   width: 100%;
-  bottom: 0;
   background-color: white;
   box-shadow: 0 -3px 3px 0 rgba(7,17,27,.1);
 }
 
-/* https://kangzubin.com/wxapp-iphonex/ */
-.bottom-IPX {
-  /* iPhone X 内容往上偏移 34px */
-  padding-bottom: 34px;
-}
-
 /* 自定义按钮，包括图片和文字说明 */
 .button {
-  padding-top: 5px;
+  padding-top: 6px;
+  padding-bottom: 10px;
   display: inline-block;
-  width: 33%;
+  width: 25%;
   text-align: center;
   font-size: 12px;
-}
-
-/* 图片logo */
-.icon {
-  width: 18px;
-  height: 18px;
 }
 
 
 /* 自己写的 API */
 .title {
+  padding: 0 20px !important;
   display: block;
   font-size: 19px;
   margin: 20px 0;
@@ -144,11 +93,5 @@
   font-size: 16px;
   font-weight: bold;
   color: #444;
-  vertical-align: middle;
-}
-
-.bio {
-  font-size: 16px;
-  color: #999;
   vertical-align: middle;
 }

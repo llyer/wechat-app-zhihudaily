@@ -13,9 +13,18 @@ Page({
     plain: false
   },
 
+  // 页面转发事件
+  onShareAppMessage(Object) {
+    var shareObj = {
+      'title': '每天三次，每次七分钟'
+    }
+    return shareObj;
+  },
+
   // 加载日报内容，加载的是最新的内容
   onLoad() {
     this.fetchArticles()
+
     //调用应用实例的方法获取全局数据
     // app.getUserInfo(function(userInfo){
     //   //更新数据
@@ -42,7 +51,7 @@ Page({
   onReachBottom() {
     // 下拉触底，先判断是否有请求正在进行中 // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求 
     this.loadMore()
-    // console.log('上拉加载更多内容完成')
+    console.log('上拉加载更多内容完成')
   },
 
   // 加载更多，加载之前的日报
@@ -91,6 +100,10 @@ Page({
           // 中间 list 内容
           list: res.data.stories
         })
+        // 如果文章内容过少，加载更多
+        if (that.data.list != null && that.data.list.length <= 5) {
+          that.loadMore()
+        }
       }
     })
     this.index = 1

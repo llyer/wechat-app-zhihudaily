@@ -1,60 +1,85 @@
 <!--detail.wxml-->
+<!--  bindtouchmove="onTouchMove" bindtouchstart = "onTouchStart" bind:touchend="onTouchEnd" -->
 <view class="container">
 
   <!-- 渲染文章封面，图片，标题，图片来源 -->
-  <view class="art-header">
-    <image src="{{art.image}}" class="art-img" mode='aspectFill' />
+  <view class="header">
+    <image class="poster" src="{{image}}" mode='aspectFill' />
     <view class='img-mask'></view>
-    <view class="art-title">{{art.title}}</view>
-    <view class="art-source">{{'图片：' + art.image_source}}</view>
+    <view class="art-title">{{title}}</view>
+    <view class="art-source">{{'图片：' + image_source}}</view>
   </view>
-
-  <!-- <rich-text nodes="{{html}}" bindtap="tap"></rich-text> -->
-  <!-- <rich-text nodes="{{art.body}}" bindtap="tap"></rich-text> -->
-  <!-- <view class="art-content">
-      {{art.body}}
-    </view>  -->
 
   <!-- 内容部分 -->
-  <view class='article-content'>
-    <!-- 渲染标题，作者信息 -->
-    <view class='title-container'>
-      <view class='art-content'>
-        <view>
-          <text class='title'>{{title}}</text>
+  <view class='body'>
+    <view wx:for="{{questions}}" wx:for-index="idx0" wx:for-item="question">
+      <!-- 第二个问题之后，加上分割线 -->
+      <view wx:if="{{idx0 > 0}}" class='question-line-dashed'></view>
+      <!-- 渲染标题，作者信息 -->
+      <view class='article-container'>
+        <view class='art-content'>
+          <view>
+            <text class='title'>{{question.title}}</text>
+          </view>
+          <block wx:for="{{question.answers}}" wx:for-index="idx1" wx:for-item="answer">
+            <view class='meta'>
+              <!-- 第二个问题之后，加上分割线 -->
+              <view wx:if="{{idx1 > 0}}" class='answer-line-dashed'></view>
+              <image class='avatar' src='{{answer.avatar}}'></image>
+              <text class='author'>{{answer.author}}</text>
+              <text class='bio'>{{answer.bio}}</text>
+            </view>
+
+            <!-- 文章正文 -->
+            <view class='p' wx:for="{{answer.content}}" wx:for-item="content">
+              <view wx:if="{{content.type == 'PARAGRAPH'}}">
+                <rich-text class="" nodes="{{content.content}}"></rich-text>
+              </view>
+
+              <!-- 渲染图片 -->
+              <view class='p' style='text-align:center' wx:elif="{{content.type == 'IMAGE'}}">
+                <image style='width: 100%;' src="{{content.content}}" data-src="{{content.content}}" mode='widthFix' bindtap="onTouchImage"></image>
+              </view>
+            </view>
+          </block>
         </view>
-        <image class='avatar' src='{{avatar}}'></image>
-        <text class='author'>{{author}}</text>
-        <text class='bio'>{{bio}}</text>
       </view>
-    </view>
-    <!-- 文章正文 -->
-    <view class='content-container' wx:for="{{art.body}}">
-      <!-- 1. 备选方案，直接渲染富文本 -->
-      <!-- <view wx:elif="{{item.type == 'IMAGE'}}">
-        <image class='article-img' src="{{item.content}}" mode='widthFix'></image>
-      </view> -->
-
-      <!-- 根据内容来渲染 -->
-      <view class='art-content' wx:if="{{item.type == 'PARAGRAPH'}}">
-        <rich-text class="" nodes="{{item.content}}" bindtap="tap"></rich-text>
-        <!-- {{item.content}} -->
-      </view>
-
-      <!-- 渲染图片 -->
-      <view style='text-align:center' wx:elif="{{item.type == 'IMAGE'}}">
-        <image class='article-image' src="{{item.content}}" mode='aspectFit'></image>
-      </view>
-    </view>
-
-    <!-- 底部需要添加知乎讨论的按钮 -->
-    <view>
-      <!-- svg 文件的问题 -->
-      <!-- <rich-text style='width=20px;'>
-        <image class="content-image" src="http://www.zhihu.com/equation?tex=%5E%7B234%7DPa" alt=""></image>
-      </rich-text> -->
-      <!-- 图片的问题 -->
-      <!-- <image class='article-img' mode='aspectFill' src="http://pic2.zhimg.com/70/v2-b27a15d26b4c76896ab79ae2ada71fa1_b.jpg"></image> -->
     </view>
   </view>
+
+  <!-- 底部需要添加知乎讨论的按钮 -->
+  <!-- 按钮元素才可以触发转发 -->
+  <view class="{{isIPX ? 'bottom bottom-IPX' : 'bottom'}}">
+    <view class='button' bindtap="onBack">
+      <image class='icon' src='/images/back_light.png'></image>
+      <view>
+        <text>返回</text>
+      </view>
+    </view>
+    <!-- <view class='button' bindtap="onBack">
+      <image class='icon' src='/images/down_light.png'></image>
+      <view>
+        <text>下一篇</text>
+      </view>
+    </view> -->
+    <view class='button' bindtap="onLike">
+      <image class='icon' src='/images/appreciate_light.png'></image>
+      <view>
+        <text>{{extra.popularity}}</text>
+      </view>
+    </view>
+    <!-- <view class='button' open-type="share">
+      <image class='icon' src='/images/share_light.png'></image>
+      <view>
+        <text>分享</text>
+      </view>
+    </view> -->
+    <view class='button' bindtap="onComment">
+      <image class='icon' src='/images/comment_light.png'></image>
+      <view>
+        <text>{{extra.comments}}</text>
+      </view>
+    </view>
+  </view>
+
 </view>
