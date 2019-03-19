@@ -82,7 +82,6 @@ Page({
 
   // ios 下自己写的向左滑动是无法触发系统特效的，自己写的向左滑动判断标准也需要改进
   onTouchEnd: function (event) {
-    console.log('touch end')
     this.data.currentGesture = 0
     if (this.data.text == '向右滑动') {
       // wx.navigateBack({
