@@ -1,4 +1,4 @@
-![logo](images/logo_zhi.gif)
+![logo](images/qr_code.jpg)
 
 # 微信小程序-知否精选
 
@@ -18,7 +18,7 @@
 
 知否精选已发布线上版本，扫描二维码直接打开小程序
 
-![logo](images/qr_code.jpg)
+![logo](images/preview.gif)
 
 ## 使用
 
