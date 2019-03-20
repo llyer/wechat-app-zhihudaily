@@ -18,7 +18,7 @@
 
 知否精选已发布线上版本，扫描二维码直接打开小程序
 
-![logo](images/preview.gif)
+[点我预览小程序](images/preview.gif)
 
 ## 使用
 
